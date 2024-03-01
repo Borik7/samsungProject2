@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+
+    tools:context=".MainActivity">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/homeejpg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hometext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Make your \nhome beautiful"
+        android:textColor="#5e3117"
+        android:textSize="@dimen/_29sdp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.637"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.076" />
+
+    <Button
+        android:id="@+id/group_2"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="@dimen/_50ssp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="116dp"
+        android:backgroundTint="#d0d1cd"
+        android:onClick="onClick"
+        android:text="Get Started"
+        android:textColor="#4ca10d"
+        android:textSize="@dimen/_21ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingHorizontal="15dp">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView2"-->
+<!--            android:layout_width="157dp"-->
+<!--            android:layout_height="115dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:src="@drawable/divannjpg"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingTop="175dp"-->
+<!--            android:text="210000դրամ"-->
+<!--            android:textSize="17dp"></TextView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/xol"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="172dp"-->
+<!--            android:paddingTop="150dp"-->
+<!--            android:text="Հյուրասենյակային հոլ"-->
+<!--            android:textSize="17dp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_anchor="@+id/imageView2"-->
+<!--            app:layout_anchorGravity="top|center"></TextView>-->
+
+<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingLeft="15dp">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="157dp"-->
+<!--            android:layout_height="115dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:src="@drawable/divanugol"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/divanugol"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingTop="250dp"-->
+<!--            android:text="250000դրամ"-->
+<!--            android:textSize="17dp"></TextView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/divanugolgin"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:paddingTop="135dp"-->
+<!--            android:text="Հյուրասենյակային \nանկյունակ"-->
+<!--            android:textSize="17dp"-->
+<!--            android:textStyle="bold"></TextView>-->
+
+<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+<!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/divan2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingTop="185dp"-->
+<!--            android:text="250000դրամ"-->
+<!--            android:textSize="17dp"></TextView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/divan2gin"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:paddingTop="135dp"-->
+<!--            android:text="Հյուրասենյակային անկյունակ"-->
+<!--            android:textSize="17dp"-->
+<!--            android:textStyle="bold"></TextView>-->
+
+<!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+
+
+
+
+
