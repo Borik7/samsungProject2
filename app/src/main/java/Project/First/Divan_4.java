@@ -9,6 +9,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import Project.First.databinding.ActivityDivan1Binding;
+import Project.First.databinding.ActivityDivan4Binding;
 
 public class Divan_4 extends AppCompatActivity {
 
@@ -45,12 +54,29 @@ public class Divan_4 extends AppCompatActivity {
     ImageView tevkoj3;
     ImageView tevkoj4;
     ImageView tevkoj5;
-
+    TextView description;
+    TextView name;
+    TextView garantia;
+    TextView erkchap;
+    TextView ktor;
+    TextView koj;
+    TextView tevkoj;
+    TextView desc3d;
+    ActivityDivan4Binding binding;
 private int gin = 180000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_divan4);
+        binding = ActivityDivan4Binding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        tevkoj = findViewById(R.id.tevguyn);
+        description = findViewById(R.id.divanbacatrutyun);
+        name = findViewById(R.id.name);
+        garantia = findViewById(R.id.divangarantya);
+        erkchap = findViewById(R.id.divanchap);
+        ktor = findViewById(R.id.guyn);
+        koj = findViewById(R.id.divankoj);
+        desc3d = findViewById(R.id.desc3d);
         ViewPager viewPager = findViewById(R.id.viewPager);
         ImageAdapter3 adapter3 = new ImageAdapter3(this);
         viewPager.setAdapter(adapter3);
@@ -229,9 +255,11 @@ private int gin = 180000;
             ktor11.animate().rotationYBy(360);
             gin = 188000;
         });
+        loading(true);
         final Button button1 = (Button) findViewById(R.id.divanboy1);
         final Button button2 = (Button) findViewById(R.id.divanboy2);
         final Button button3 = (Button) findViewById(R.id.divanboy3);
+        getProducts(getIntent().getStringExtra("categoryId"), getIntent().getStringExtra("productId"));
         button1.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -283,5 +311,32 @@ private int gin = 180000;
             }
 
         });
+    }
+    private void getProducts(String categoryId, String productId) {
+        DocumentReference productRef = FirebaseFirestore.getInstance().collection("categories").document(categoryId).collection("products").document(productId);
+        productRef.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            description.setText(documentSnapshot.getString("Description"));
+                            name.setText(documentSnapshot.getString("name"));
+                            koj.setText(documentSnapshot.getString("Koj"));
+                            ktor.setText(documentSnapshot.getString("Ktor"));
+                            erkchap.setText(documentSnapshot.getString("Erkchap"));
+                            garantia.setText(documentSnapshot.getString("Garantya"));
+                            desc3d.setText(documentSnapshot.getString("3ddesc"));
+                            tevkoj.setText(documentSnapshot.getString("Tevkoj"));
+                            binding.loading. setVisibility(View.GONE);
+                        }
+                    }
+                });loading(false);
+    }
+    private void loading(boolean isLoading) {
+        if (isLoading) {
+            binding.loading.setVisibility(View.VISIBLE);
+        } if(isLoading == false) {
+            binding.loading.setVisibility(View.GONE);
+        }
     }
 }

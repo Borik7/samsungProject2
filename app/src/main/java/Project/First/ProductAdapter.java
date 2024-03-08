@@ -1,5 +1,7 @@
 package Project.First;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -17,9 +19,11 @@ import Project.First.databinding.ItemContainerProductBinding;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private final List<Product> products;
+    private static Context context;
 
-    public ProductAdapter(List<Product> products) {
+    public ProductAdapter(List<Product> products, Context context) {
         this.products = products;
+        this.context = context;
     }
 
     @NonNull
@@ -59,6 +63,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             }
             binding.textView1.setText(productData.name);
             binding.textView2.setText(productData.price);
+            binding.postConstraint.setOnClickListener(v -> {
+                Intent intent = new Intent(context.getApplicationContext(), Divan_1.class);
+                intent.putExtra("categoryId", productData.categoryId);
+                intent.putExtra("productId", productData.productId);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            });
         }
     }
 }

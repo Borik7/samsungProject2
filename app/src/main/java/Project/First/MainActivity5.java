@@ -78,7 +78,7 @@ public class MainActivity5 extends AppCompatActivity {
         });*/
         recyclerView = findViewById(R.id.recyclerView);
         productList = new ArrayList<>();
-        productAdapter = new ProductAdapter(productList);
+        productAdapter = new ProductAdapter(productList, getApplicationContext());
         recyclerView.setAdapter(productAdapter);
         getProducts();
         recyclerView.setVisibility(View.VISIBLE);

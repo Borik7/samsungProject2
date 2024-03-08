@@ -5,8 +5,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-
     tools:context=".MainActivity">
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -25,19 +27,27 @@
                 tools:layout_editor_absoluteX="-40dp">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Հյուրասենյակային \nանկյունակ"
-                    android:textSize="29dp"
+                    android:textSize="30dp"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:textAlignment="center"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_80sdp"
+                android:layout_marginBottom="@dimen/_120sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
@@ -57,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="15dp">
+
                 <TextView
                     android:id="@+id/divangin1"
                     android:layout_width="wrap_content"
@@ -69,6 +80,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/divangarantya"
                     android:layout_width="wrap_content"
@@ -79,25 +91,20 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/divangin1"
+                    app:layout_constraintTop_toBottomOf="@+id/divangin1"
                     />
 
                 <TextView
                     android:id="@+id/divanbacatrutyun"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Հյուրասենյակային ամկյունակ իր մեջ ներառում է
-2 բազկաթոռ և փուֆիկ բացվում է,
-պատրաստվում է որակյալ փայտից և սպունգից ռուսական արտադրության։Չափերը՝ երկարություն՝ 260 x 170
-խորություն՝ 40 բարձրություն՝ 85։
-երկարությունը կարելի է փոխել ներքևի կոճակների միջոցով։"
+                    android:layout_marginTop="30dp"
                     android:textSize="12dp"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.448"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/divangarantya" />
+                    app:layout_constraintTop_toTopOf="@id/divangarantya" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/divanboyknopka"
@@ -109,7 +116,6 @@
                     android:id="@+id/divanchap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Հնարավոր երկարության չափեր"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -119,20 +125,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
                     <Button
                         android:id="@+id/divanboy1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#b0b5b1"
-                        android:text="2.40 x 1.50"
+                        android:text="1.80"
                         android:textColor="@color/black"
-                        android:textSize="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.052"
+                        app:layout_constraintHorizontal_bias="0.08"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        android:backgroundTint="#b0b5b1"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <Button
@@ -140,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#b0b5b1"
-                        android:text="2.50 x 1.60"
+                        android:text="2.00"
                         android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +152,6 @@
                         app:layout_constraintStart_toEndOf="@id/divanboy1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="12dp"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <Button
@@ -156,12 +159,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#b0b5b1"
-                        android:text="2.70 x 1.80"
+                        android:text="2.20"
                         android:textColor="@color/black"
-                        android:textSize="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.947"
+                        app:layout_constraintHorizontal_bias="0.913"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0" />
@@ -177,7 +179,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Կտորների տեսականի"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -349,7 +350,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Կաշիների տեսականի"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -509,6 +509,7 @@
                             app:layout_constraintVertical_bias="0.0" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </HorizontalScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -522,7 +523,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Կտորների տեսականի"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -602,19 +602,21 @@
                             app:layout_constraintStart_toEndOf="@+id/tevktor_4"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
+
                         <ImageView
                             android:id="@+id/tevktor_6"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
+                            android:layout_marginStart="5dp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ktornlx107020"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginStart="5dp"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toEndOf="@+id/tevktor_5"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
+
                         <ImageView
                             android:id="@+id/tevktor_7"
                             android:layout_width="35dp"
@@ -628,21 +630,19 @@
                             app:layout_constraintStart_toEndOf="@+id/tevktor_6"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
-
                         <ImageView
                             android:id="@+id/tevktor_8"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
-                            android:layout_marginStart="5dp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ktortunga1903"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginStart="5dp"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toEndOf="@+id/tevktor_7"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
-
                         <ImageView
                             android:id="@+id/tevktor_9"
                             android:layout_width="35dp"
@@ -687,12 +687,11 @@
                             android:id="@+id/tevkoj_1"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
+                            android:layout_marginStart="5dp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/kojregato3444"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tevktor_11"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
@@ -706,6 +705,7 @@
                             android:layout_marginStart="5dp"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toEndOf="@+id/tevkoj_1"
+
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0" />
                         <ImageView
@@ -763,15 +763,16 @@
                 android:padding="15dp">
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/desc3d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Սեղմեք այս կոճակը և պահեք հեռախոսի տեսախցիկը Ձեր տան որևէ
-տեղում որտեղ նախատեսում եք տեղադրել բազմոցը և դուք կտեսնեք,արդյոք բազմոցի չափերը
-և  վերևում Ձեր նախընտրած գունային, տեքստուրային կոմբինացիաներով ստեղծված բազմոցը
-համապատասխանում են Ձեր բնակարանին։"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                <!--android:text="Սեղմեք այս կոճակը և պահեք հեռախոսի տեսախցիկը Ձեր տան որևէ
+տեղում որտեղ նախատեսում եք տեղադրել բազմոցը և դուք կտեսնեք,արդյոք բազմոցի չափերը
+և  վերևում Ձեր նախընտրած գունային, տեքստուրային կոմբինացիաներով ստեղծված բազմոցը
+համապատասխանում են Ձեր բնակարանին։"-->
+
 
                 <Button
                     android:layout_width="wrap_content"
@@ -780,9 +781,10 @@
                     android:text="3D"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                    app:layout_constraintTop_toBottomOf="@+id/desc3d" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:padding="7dp"
                 android:layout_width="match_parent"
@@ -847,6 +849,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/facebook" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

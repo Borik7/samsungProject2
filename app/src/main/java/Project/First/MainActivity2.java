@@ -42,6 +42,7 @@ public class MainActivity2 extends AppCompatActivity {
     ImageView divan1;
     ImageView divan4;
     ImageView divan3;
+    TextView addToCart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,6 @@ public class MainActivity2 extends AppCompatActivity {
         else{
             setContentView(R.layout.layout_land);
         }
-
         textViewonUgalok = findViewById(R.id.ugalokner);
         textViewonUgalok.setOnClickListener(view -> {
             onUglaok();
@@ -86,15 +86,15 @@ public class MainActivity2 extends AppCompatActivity {
         });
         divanugol1 = findViewById(R.id.zalimageView);
         divanugol1.setOnClickListener(view ->{
-            onUgol1();
+            onDivan1();
         });
         divanugol2 = findViewById(R.id.zalimageView11);
         divanugol2.setOnClickListener(view ->{
-            onDivanUgol2();
+            onDivan2();
         });
         divanugol4 = findViewById(R.id.zalimageView22);
         divanugol4.setOnClickListener(view ->{
-            onDivanUgol4();
+            onDivan4();
         });
         karavat4 = findViewById(R.id.karavatimageView);
         karavat4.setOnClickListener(view ->{
@@ -124,10 +124,10 @@ public class MainActivity2 extends AppCompatActivity {
         divan3.setOnClickListener(view ->{
 
                 });
-        divan4 = findViewById(R.id.divanimageView11);
+       /* divan4 = findViewById(R.id.divanimageView11);
         divan4.setOnClickListener(view ->{
-
-        });
+            onDivan3();
+        });*/
         divan1 = findViewById(R.id.divanimageView22);
         divan1.setOnClickListener(view ->{
 
@@ -185,7 +185,7 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(intent);
     }
     public void onUgol1(){
-        Intent intent = new Intent(this, Ugalok_1.class);
+        Intent intent = new Intent(this, AddToCart.class);
         startActivity(intent);
     }
     public void onUgol4(){
@@ -234,6 +234,8 @@ public class MainActivity2 extends AppCompatActivity {
     }
     public void onDivan1(){
         Intent intent = new Intent(this,Divan_1.class);
+        intent.putExtra("categoryId", "YCgYT6dREsVY7Hub8SLj");
+        intent.putExtra("productId", "OFipHVkV65Vaw46OWuzr");
         startActivity(intent);
     }
     public void onDivan5(){
@@ -241,7 +243,18 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(intent);
     }
     public void onDivan3(){
-        Intent intent = new Intent(this,Divan_3.class);
+
+    }
+    public void onDivan2(){
+        Intent intent = new Intent(this,Divan_2.class);
+        intent.putExtra("categoryId", "YCgYT6dREsVY7Hub8SLj");
+        intent.putExtra("productId", "a0oitHyqy6aESjdJFLDQ");
+        startActivity(intent);
+    }
+    public void onDivan4(){
+        Intent intent = new Intent(this,Divan_4.class);
+        intent.putExtra("categoryId", "YCgYT6dREsVY7Hub8SLj");
+        intent.putExtra("productId", "a0oitHyqy6aESjdJFLDQ");
         startActivity(intent);
     }
 }

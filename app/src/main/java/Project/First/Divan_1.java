@@ -1,20 +1,29 @@
 package Project.First;
 
+import static java.security.AccessController.getContext;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+import android.provider.Settings.Secure;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,7 +32,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import Project.First.databinding.ActivityDivan1Binding;
 
@@ -74,16 +85,32 @@ public class Divan_1 extends AppCompatActivity {
     TextView koj;
     TextView tevkoj;
     TextView desc3d;
+    String androidId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
     private int gin = 180000;
+    /*private String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+            Settings.Secure.ANDROID_ID);*/
+    private String android_id;
     ActivityDivan1Binding binding;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDivan1Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        //android_id = getIMEI(getApplicationContext());
+        if(ActivityCompat.checkSelfPermission(this.getApplicationContext(), "android.permission.READ_PRIVILEGED_PHONE_STATE") != PackageManager.PERMISSION_GRANTED)        {
+            ActivityCompat.requestPermissions(this, new String[]{"android.permission.READ_PRIVILEGED_PHONE_STATE"},123);
+
+        }
+
+        //android_id = telephonyManager.getImei();
+
         ViewPager viewPager = findViewById(R.id.viewPager);
         getProducts(getIntent().getStringExtra("categoryId"), getIntent().getStringExtra("productId"));
+        binding.addToCart.setOnClickListener(view ->{
+            addToCart(getIntent().getStringExtra("productId"));
+        });
         tevkoj = findViewById(R.id.tevguyn);
         description = findViewById(R.id.divanbacatrutyun);
         name = findViewById(R.id.name);
@@ -279,11 +306,11 @@ public class Divan_1 extends AppCompatActivity {
 
             @Override
             public boolean onTouch(View view, MotionEvent event) {
-                if (gin == 180000 || gin == 1830000 || gin == 188000){
+                if (gin == 180000 || gin == 1830000 || gin == 188000) {
                     gin -= 5000;
                 }
 
-                if(event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     button1.setBackgroundColor(Color.RED);
                     button2.setBackgroundColor(Color.GRAY);
                     button3.setBackgroundColor(Color.GRAY);
@@ -298,7 +325,7 @@ public class Divan_1 extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
 
-                if(event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     button2.setBackgroundColor(Color.RED);
                     button3.setBackgroundColor(Color.GRAY);
                     button1.setBackgroundColor(Color.GRAY);
@@ -313,12 +340,12 @@ public class Divan_1 extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
 
-                if (gin == 180000 || gin == 1830000 || gin == 188000){
+                if (gin == 180000 || gin == 1830000 || gin == 188000) {
                     gin += 5000;
                 }
 
 
-                if(event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     button3.setBackgroundColor(Color.RED);
                     button2.setBackgroundColor(Color.GRAY);
                     button1.setBackgroundColor(Color.GRAY);
@@ -330,6 +357,7 @@ public class Divan_1 extends AppCompatActivity {
 
 
     }
+
     private void getProducts(String categoryId, String productId) {
         DocumentReference productRef = FirebaseFirestore.getInstance().collection("categories").document(categoryId).collection("products").document(productId);
         productRef.get()
@@ -345,16 +373,51 @@ public class Divan_1 extends AppCompatActivity {
                             garantia.setText(documentSnapshot.getString("Garantya"));
                             desc3d.setText(documentSnapshot.getString("3ddesc"));
                             tevkoj.setText(documentSnapshot.getString("Tevkoj"));
+                            binding.loading.setVisibility(View.GONE);
                         }
                     }
-                });loading(false);
+                });
+        loading(false);
     }
+
+    private void addToCart(String productId) {
+        HashMap<String, Object> cart = new HashMap<>();
+        HashMap<String, Object> cartItem = new HashMap<>();
+        cart.put("deviceId", android_id);
+        cartItem.put("itemCount", 5);
+        cartItem.put("itemId", productId);
+        cart.put("cartItems", cartItem);
+
+        FirebaseFirestore.getInstance().collection("carts")
+                .add(cart)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(Divan_1.this,"Added",Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void loading(boolean isLoading) {
         if (isLoading) {
             binding.loading.setVisibility(View.VISIBLE);
-        } if(isLoading == false) {
+        }
+        if (isLoading == false) {
             binding.loading.setVisibility(View.GONE);
         }
-        isLoading = false;
     }
+    /*public static String getIMEI(Context context) {
+
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (telephonyManager != null) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                String androidId = telephonyManager.getImei();
+                return telephonyManager.getImei();
+            } else {
+                // For older devices (pre-Oreo), use getDeviceId()
+                return telephonyManager.getDeviceId();
+            }
+        }
+        return null; // Handle null case appropriately in your code
+    }*/
 }
