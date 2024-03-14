@@ -1,40 +1,36 @@
 package Project.First;
 
-import static java.security.AccessController.getContext;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import android.provider.Settings.Secure;
-
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 import Project.First.databinding.ActivityDivan1Binding;
 
@@ -85,7 +81,7 @@ public class Divan_1 extends AppCompatActivity {
     TextView koj;
     TextView tevkoj;
     TextView desc3d;
-    String androidId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+    String cartId;
     private int gin = 180000;
     /*private String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
             Settings.Secure.ANDROID_ID);*/
@@ -383,19 +379,50 @@ public class Divan_1 extends AppCompatActivity {
     private void addToCart(String productId) {
         HashMap<String, Object> cart = new HashMap<>();
         HashMap<String, Object> cartItem = new HashMap<>();
-        cart.put("deviceId", android_id);
-        cartItem.put("itemCount", 5);
-        cartItem.put("itemId", productId);
-        cart.put("cartItems", cartItem);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            //cartId = FirebaseFirestore.getInstance().collection("carts").whereEqualTo("deviceId", user.getUid()).toString();
+            FirebaseFirestore.getInstance().collection("carts").whereEqualTo("deviceId", user.getUid())
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()){
+                                if(!task.getResult().isEmpty()){
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        DocumentReference docRef = document.getReference().collection("cartItems").document();
+                                        Map<String, Object> newData = new HashMap<>();
+                                        newData.put("itemCount", 5);
+                                        newData.put("itemId", productId);
+                                        docRef.set(newData);
+                                        Toast.makeText(Divan_1.this,"Added Second",Toast.LENGTH_SHORT).show();
+                                    }
+                                   /* if (user.getUid().equals(cartId)) {
+                                        HashMap<String, Object> newcart = new HashMap<>();
+                                        FirebaseFirestore.getInstance().collection("cartItems").
+                                    }*/
+                                }else {
+                                    cart.put("deviceId", user.getUid());
+                                    cartItem.put("itemCount", 5);
+                                    cartItem.put("itemId", productId);
+                                    cart.put("cartItems", cartItem);
 
-        FirebaseFirestore.getInstance().collection("carts")
-                .add(cart)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(Divan_1.this,"Added",Toast.LENGTH_SHORT).show();
-                    }
-                });
+                                    FirebaseFirestore.getInstance().collection("carts")
+                                            .add(cart)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Toast.makeText(Divan_1.this,"Added",Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
+                            }
+
+                        }
+                    });
+        } else {
+            Toast.makeText(Divan_1.this,"User is not logged in",Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void loading(boolean isLoading) {

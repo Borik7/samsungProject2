@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onPopular(){
-        Intent intent = new Intent(this, Divan_1.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         intent.putExtra("categoryId", "YCgYT6dREsVY7Hub8SLj");
         intent.putExtra("productId", "OFipHVkV65Vaw46OWuzr");
         startActivity(intent);
