@@ -1,4 +1,4 @@
-package Project.First;
+/*package Project.First;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -251,4 +251,4 @@ public class Divan_2 extends AppCompatActivity {
             binding.loading.setVisibility(View.GONE);
         }
     }
-}
+}*/

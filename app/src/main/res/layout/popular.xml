@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <!--<TextView
                 android:textStyle="bold"
                 android:textSize="@dimen/_25ssp"
                 android:layout_gravity="center"
@@ -26,34 +26,67 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
-            <androidx.constraintlayout.widget.ConstraintLayout
+                />-->
 
-                android:id="@+id/constraintLayout"
+            <!--<TextView
+                android:padding="@dimen/_8ssp"
+                android:id="@+id/textView8"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_250sdp"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divan1">
+                android:layout_height="wrap_content"
+                android:text="Զեղչված կահույք"
+                android:textStyle="bold"
+                android:textSize="@dimen/_28ssp"
+                android:textAlignment="center"
+                android:textColor="#53AABE"/>-->
 
-<!--                <androidx.viewpager.widget.ViewPager-->
-<!--                    android:padding="@dimen/_15sdp"-->
-<!--                    android:id="@+id/viewPagerPop"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="@dimen/_250sdp"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent" />-->
-                    <com.codebyashish.autoimageslider.AutoImageSlider
-                        android:id="@+id/autoImageSliderpop"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_250sdp"
-                        app:ais_corner_radius="10"
-                        app:ais_indicator_align="@string/center"
-                        app:ais_auto_sliding="true"
-                        app:ais_time_interval="3000"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+            <com.codebyashish.autoimageslider.AutoImageSlider
+                android:padding="@dimen/_8ssp"
+                android:id="@+id/autoImageSliderpop"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                app:ais_corner_radius="10"
+                app:ais_auto_sliding="true"
+                app:ais_time_interval="3000"
+                app:ais_dots_visible="false"
+                app:ais_indicator_align="@string/center"
+                android:stateListAnimator="@android:anim/slide_out_right"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8ssp">
+            <EditText
+                android:background="@drawable/roundedcorner"
+                android:backgroundTint="#53AABE"
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:clipToPadding="false"
+                android:hint="Search"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="@dimen/_12ssp"
+                android:paddingVertical="13dp"
+                android:textSize="@dimen/_11ssp"
+                android:textColorHint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+            </EditText>
 
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/editText"
+                    app:layout_constraintHorizontal_bias="0.958"
+                    app:layout_constraintStart_toStartOf="@+id/editText"
+                    app:layout_constraintTop_toTopOf="@+id/editText"
+                    app:layout_constraintVertical_bias="0.476" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <!--<HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,7 +203,9 @@
                     android:layout_height="wrap_content"
                     android:text="Տեսնել բոլորը"
                     android:textSize="@dimen/_12ssp"
+                    android:textColor="#53AABE"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/textView" />
@@ -243,6 +278,8 @@
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="#53AABE"
+                    android:textStyle="bold"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/zaltextView" />
 
@@ -315,6 +352,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
+                    android:textColor="#53AABE"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/karavattextView" />
 
                 <TextView
@@ -385,6 +424,8 @@
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="#53AABE"
+                    android:textStyle="bold"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/karavat2textView" />
 
@@ -456,6 +497,8 @@
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="#53AABE"
+                    android:textStyle="bold"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/divantextView" />
 
@@ -524,6 +567,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Տեսնել բոլորը"
+                    android:textColor="#53AABE"
+                    android:textStyle="bold"
                     android:textSize="@dimen/_14ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -543,9 +588,10 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="7dp"
+                android:padding="@dimen/_8ssp"
                 android:layout_width="match_parent"
-                android:background="@color/black"
+                android:background="#F4F3EE"
+                android:textStyle="bold"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -554,8 +600,8 @@
                     android:layout_height="wrap_content"
                     android:text="Կապ մեզ հետ"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
                     android:textSize="20dp"
+                    android:textColor="#53AABE"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -567,28 +613,28 @@
                     android:id="@+id/heraxos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Հեռ․՝ +374 94 002 - 008\n          +374 77 030 - 080"
-                    android:textColor="@color/white"
+                    android:text="Հեռ․՝ +374 94 002 - 008\n           +374 77 030 - 080"
+                    android:textColor="#59555E"
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.015"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/kap"
-                    android:layout_marginTop="12dp"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/facebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="4dp"
                     android:text="Facebook Divano Furniture"
-                    android:textColor="@color/white"
+                    android:textColor="#59555E"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.023"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/heraxos" />
 
@@ -596,12 +642,12 @@
                     android:id="@+id/mail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Էլ․ հասցե ՝ bor071224@gmail.com\n                     aram.g.79@mail.ru "
-                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:text="Էլ․ հասցե ՝ bor071224@gmail.com\n                      aram.g.79@mail.ru "
+                    android:textColor="#59555E"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.043"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/facebook" />
 

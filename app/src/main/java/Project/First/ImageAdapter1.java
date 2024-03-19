@@ -1,19 +1,11 @@
 package Project.First;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
-
-import java.util.Timer;
-
-public class ImageAdapter1 extends PagerAdapter {
+/*public class ImageAdapter1 extends PagerAdapter {
 
     private Context mContext1;
-    private int[] mImageIds1 = new int[] {R.drawable.dian,R.drawable.divan6,R.drawable.divan5};
+    String categoryId = "YCgYT6dREsVY7Hub8SLj";
+    String image1 = String.valueOf(FirebaseFirestore.getInstance().collection("categories").document(categoryId).collection("products").document("image"));
+    private int[] mImageIds1 = new int[] {Integer.parseInt(image1),R.drawable.divan6,R.drawable.divan5};
 
     ImageAdapter1(Context context){
         mContext1 = context;
@@ -44,3 +36,4 @@ public class ImageAdapter1 extends PagerAdapter {
         container.removeView((ImageView) object);
     }
 }
+*/

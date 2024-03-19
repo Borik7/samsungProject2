@@ -1,18 +1,21 @@
 package Project.First;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.utils.widget.ImageFilterButton;
-
-import android.view.SurfaceView;
-import android.widget.Button;
-import android.content.Intent;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.utils.widget.ImageFilterButton;
+
+import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
+    String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+    /*ListUsersPage listUsersPage = FirebaseAuth.getInstance().listUsers(1000);
+    for (UserRecord userRecord : listUsersPage.iterateAll()) {
+        String email = userRecord.getEmail();
+        // Do something with the email (e.g., add it to a list)
+    }*/
     
     private ImageFilterButton button;
     private int a;

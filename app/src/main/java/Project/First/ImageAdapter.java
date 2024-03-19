@@ -10,7 +10,9 @@ import androidx.viewpager.widget.PagerAdapter;
 
 public class ImageAdapter extends PagerAdapter {
     private Context mContext;
-    private int[] mImageIds = new int[] {R.drawable.divan1,R.drawable.divan3,R.drawable.divan4};
+    String categoryId = "YCgYT6dREsVY7Hub8SLj";
+    //int image1 = FirebaseFirestore.getInstance().collection("categories").document(categoryId).collection("products").getId("image");
+    private int[] mImageIds = new int[] {R.drawable.dian,R.drawable.divan6,R.drawable.divan5};
 
     ImageAdapter(Context context){
         mContext = context;

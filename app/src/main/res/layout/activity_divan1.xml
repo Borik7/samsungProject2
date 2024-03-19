@@ -6,13 +6,27 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_marginBottom="@dimen/_120sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center"/>
 
 
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -30,24 +44,26 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="30dp"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/addToCart"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:src="@drawable/cart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <ProgressBar
-                android:id="@+id/loading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_80sdp"
-                android:layout_marginBottom="@dimen/_120sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_gravity="center"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
@@ -55,10 +71,12 @@
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divan1">
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/viewPager"
+                <com.codebyashish.autoimageslider.AutoImageSlider
+                    android:id="@+id/autoImageSliderDivan"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:stateListAnimator="@android:anim/slide_out_right"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,16 +98,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/addToCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add to cart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divangarantya" />
 
     <TextView
         android:id="@+id/divangarantya"
@@ -129,33 +137,37 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/divanchap"
+                    android:id="@+id/buttonlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divanchap">
+
                     <Button
                         android:id="@+id/divanboy1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="#F4F3EE"
                         android:text="1.80"
-                        android:textColor="@color/black"
+                        android:textColor="#53AABE"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.08"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:backgroundTint="#b0b5b1"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <Button
                         android:id="@+id/divanboy2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#b0b5b1"
+                        android:backgroundTint="#F4F3EE"
                         android:text="2.00"
-                        android:textColor="@color/black"
+                        android:textColor="#53AABE"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.498"
@@ -168,9 +180,9 @@
                         android:id="@+id/divanboy3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#b0b5b1"
+                        android:backgroundTint="#F4F3EE"
                         android:text="2.20"
-                        android:textColor="@color/black"
+                        android:textColor="#53AABE"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.913"
@@ -180,6 +192,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/ktorlayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="7dp">
@@ -208,7 +221,6 @@
                     android:id="@+id/ktor_1"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:scaleType="centerCrop"
                     android:src="@drawable/ktornlx017017"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -787,8 +799,9 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/black"
+                    android:backgroundTint="#53AABE"
                     android:text="3D"
+                    android:textColor="#F4F3EE"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/desc3d" />
@@ -796,9 +809,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="7dp"
+                android:padding="@dimen/_8ssp"
                 android:layout_width="match_parent"
-                android:background="@color/black"
+                android:background="#F4F3EE"
+                android:textStyle="bold"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -807,8 +821,8 @@
                     android:layout_height="wrap_content"
                     android:text="Կապ մեզ հետ"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
                     android:textSize="20dp"
+                    android:textColor="#53AABE"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -820,28 +834,28 @@
                     android:id="@+id/heraxos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Հեռ․՝ +374 94 002 - 008\n          +374 77 030 - 080"
-                    android:textColor="@color/white"
+                    android:text="Հեռ․՝ +374 94 002 - 008\n           +374 77 030 - 080"
+                    android:textColor="#59555E"
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.015"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/kap"
-                    android:layout_marginTop="12dp"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/facebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="4dp"
                     android:text="Facebook Divano Furniture"
-                    android:textColor="@color/white"
+                    android:textColor="#59555E"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.023"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/heraxos" />
 
@@ -849,12 +863,12 @@
                     android:id="@+id/mail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Էլ․ հասցե ՝ bor071224@gmail.com\n                     aram.g.79@mail.ru "
-                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:text="Էլ․ հասցե ՝ bor071224@gmail.com\n                      aram.g.79@mail.ru "
+                    android:textColor="#59555E"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.043"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/facebook" />
 
@@ -862,5 +876,4 @@
 
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

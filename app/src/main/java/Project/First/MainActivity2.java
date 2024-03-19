@@ -1,21 +1,19 @@
 package Project.First;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.codebyashish.autoimageslider.AutoImageSlider;
+import com.codebyashish.autoimageslider.Enums.ImageAnimationTypes;
 import com.codebyashish.autoimageslider.Enums.ImageScaleType;
 import com.codebyashish.autoimageslider.ExceptionsClass;
 import com.codebyashish.autoimageslider.Models.ImageSlidesModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -43,6 +41,7 @@ public class MainActivity2 extends AppCompatActivity {
     ImageView divan4;
     ImageView divan3;
     TextView addToCart;
+    TextView zaltextview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +50,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         else{
             setContentView(R.layout.layout_land);
+        }
+        String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        textViewonZalUgalok = findViewById(R.id.zalugalokner);
+        zaltextview = findViewById(R.id.zaltextView);
+        if(user.equals("aram.g.79@mail.ru")) {
+            textViewonZalUgalok.setText("Put new items");
+            textViewonZalUgalok.setOnClickListener((v)-> startActivity(new Intent(MainActivity2.this, AddProductActivity.class)));
+            zaltextview.setText("Create new category");
+            zaltextview.setOnClickListener((v)-> startActivity(new Intent(MainActivity2.this, AddProductCategory.class)));
+        }else {
+            textViewonZalUgalok = findViewById(R.id.zalugalokner);
+            textViewonZalUgalok.setOnClickListener(view -> {
+                onPopular();
+            });
         }
         textViewonUgalok = findViewById(R.id.ugalokner);
         textViewonUgalok.setOnClickListener(view -> {
@@ -68,14 +81,11 @@ public class MainActivity2 extends AppCompatActivity {
         textViewonKaravat.setOnClickListener(view -> {
             onKaravat();
         });
-        textViewonZalUgalok = findViewById(R.id.zalugalokner);
-        textViewonZalUgalok.setOnClickListener(view -> {
-            onPopular();
-        });
+
         ugol1 = findViewById(R.id.imageView);
         ugol1.setOnClickListener(view ->{
             onUgol1();
-                });
+        });
         ugol4 = findViewById(R.id.imageView11);
         ugol4.setOnClickListener(view ->{
             onUgol1();
@@ -123,7 +133,7 @@ public class MainActivity2 extends AppCompatActivity {
         divan3 = findViewById(R.id.divanimageView);
         divan3.setOnClickListener(view ->{
 
-                });
+        });
        /* divan4 = findViewById(R.id.divanimageView11);
         divan4.setOnClickListener(view ->{
             onDivan3();
@@ -135,15 +145,16 @@ public class MainActivity2 extends AppCompatActivity {
         AutoImageSlider autoImageSlider = findViewById(R.id.autoImageSliderpop);
         ArrayList<ImageSlidesModel> autoImageList = new ArrayList<>();
         try {
-            autoImageList.add(new ImageSlidesModel(R.drawable.dian, ImageScaleType.CENTER_CROP));
+            autoImageList.add(new ImageSlidesModel(R.drawable.homeejpg, ImageScaleType.CENTER_CROP));
         } catch (ExceptionsClass e) {
             throw new RuntimeException(e);
         }
         try {
-            autoImageList.add(new ImageSlidesModel(R.drawable.dian, ImageScaleType.CENTER_CROP));
+            autoImageList.add(new ImageSlidesModel(R.drawable.divanugol, ImageScaleType.FIT));
         } catch (ExceptionsClass e) {
             throw new RuntimeException(e);
         }
+        autoImageSlider.setSlideAnimation(ImageAnimationTypes.DEPTH_SLIDE);
         autoImageSlider.setImageList(autoImageList);
 
         //ImageAdapterForPopular adapterpop = new ImageAdapterForPopular(this);
@@ -170,7 +181,7 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });*/
 
-}
+    }
 
     public void onPopular(){
         Intent intent = new Intent(this, MainActivity3.class);
@@ -185,7 +196,7 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(intent);
     }
     public void onUgol1(){
-        Intent intent = new Intent(this, AddToCart.class);
+        Intent intent = new Intent(this, Ugalok_1.class);
         startActivity(intent);
     }
     public void onUgol4(){
@@ -224,10 +235,10 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = new Intent(this, Ugalok_1.class);
         startActivity(intent);
     }
-    public void onDivanUgol2(){
+    /*public void onDivanUgol2(){
         Intent intent = new Intent(this, Divan_2.class);
         startActivity(intent);
-    }
+    }*/
     public void onDivanUgol4(){
         Intent intent = new Intent(this, Divan_4.class);
         startActivity(intent);
@@ -246,10 +257,10 @@ public class MainActivity2 extends AppCompatActivity {
 
     }
     public void onDivan2(){
-        Intent intent = new Intent(this,Divan_2.class);
+        /*Intent intent = new Intent(this,Divan_2.class);
         intent.putExtra("categoryId", "YCgYT6dREsVY7Hub8SLj");
         intent.putExtra("productId", "a0oitHyqy6aESjdJFLDQ");
-        startActivity(intent);
+        startActivity(intent);*/
     }
     public void onDivan4(){
         Intent intent = new Intent(this,Divan_4.class);

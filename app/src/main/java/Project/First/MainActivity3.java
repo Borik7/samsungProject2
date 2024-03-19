@@ -1,15 +1,13 @@
 package Project.First;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.view.View;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -17,7 +15,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-import Project.First.databinding.ActivityDivan1Binding;
 import Project.First.databinding.ActivityMain3Binding;
 
 public class MainActivity3 extends AppCompatActivity {
@@ -44,7 +41,6 @@ public class MainActivity3 extends AppCompatActivity {
         intent.putExtra("productId", "OFipHVkV65Vaw46OWuzr");
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setOnClickListener(view ->{
-
         });
 //        divan1 = findViewById(R.id.divan1);
 //        divan1.setOnClickListener(view -> {
@@ -101,7 +97,7 @@ public class MainActivity3 extends AppCompatActivity {
         binding.loading.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
-    private void loading(boolean isLoading) {
+  private void loading(boolean isLoading) {
         if (isLoading) {
             binding.loading.setVisibility(View.VISIBLE);
         } if(isLoading == false) {

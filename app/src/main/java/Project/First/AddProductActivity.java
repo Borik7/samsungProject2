@@ -1,16 +1,15 @@
 package Project.First;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,9 +18,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
-import java.util.Locale;
-
-import Project.First.databinding.ActivityDivan1Binding;
 
 public class AddProductActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -41,6 +37,10 @@ public class AddProductActivity extends AppCompatActivity {
     EditText editText;
     EditText garantya;
 
+    EditText erkchap1;
+    EditText erkchap2;
+    EditText erkchap3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +55,9 @@ public class AddProductActivity extends AppCompatActivity {
         priceEditText = findViewById(R.id.price);
         descriptoinEditText = findViewById(R.id.description);
         erkchaperEditText = findViewById(R.id.erkchap);
+        erkchap1 = findViewById(R.id.erkchap1);
+        erkchap2 = findViewById(R.id.erkchap2);
+        erkchap3 = findViewById(R.id.erkchap3);
         kojEditText = findViewById(R.id.kojer);
         ktorEditText = findViewById(R.id.ktorner);
         categoryEditText = findViewById(R.id.category);
@@ -103,6 +106,7 @@ public class AddProductActivity extends AppCompatActivity {
     
    private void addProduct(String imageUrl)
     {
+
         String name = nameEditText.getText().toString();
         String garant = garantya.getText().toString();
         String tev = tevkoj.getText().toString();
@@ -110,6 +114,9 @@ public class AddProductActivity extends AppCompatActivity {
         String price = priceEditText.getText().toString();
         String desc = descriptoinEditText.getText().toString();
         String erk = erkchaperEditText.getText().toString();
+        String erk1 = erkchap1.getText().toString();
+        String erk2 = erkchap2.getText().toString();
+        String erk3 = erkchap3.getText().toString();
         String koj = kojEditText.getText().toString();
         String ktor = ktorEditText.getText().toString();
         String category = categoryEditText.getText().toString();
@@ -123,6 +130,9 @@ public class AddProductActivity extends AppCompatActivity {
         product.put("Erkchap", erk);
         product.put("Koj", koj);
         product.put("Ktor", ktor);
+        product.put("Erkchap1", erk1);
+        product.put("Erkchap2", erk2);
+        product.put("Erkchap3", erk3);
         product.put("imageUrl", imageUrl);
         if (category.equals("Divan")) {
             FirebaseFirestore.getInstance().collection("categories").whereEqualTo("name", category)

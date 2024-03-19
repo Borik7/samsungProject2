@@ -46,7 +46,22 @@
         android:id="@+id/erkchap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Erkarutyan chaper"/>
+        android:hint="Erkarutyan chaper text"/>
+    <EditText
+        android:id="@+id/erkchap1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Erkarutyan chaper 1"/>
+    <EditText
+        android:id="@+id/erkchap2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Erkarutyan chaper 2"/>
+    <EditText
+        android:id="@+id/erkchap3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Erkarutyan chaper 3"/>
     <EditText
         android:id="@+id/kojer"
         android:layout_width="match_parent"
