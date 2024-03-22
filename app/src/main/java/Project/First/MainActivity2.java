@@ -94,7 +94,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
         textViewonKaravat = findViewById(R.id.karavat);
         textViewonKaravat.setOnClickListener(view -> {
-            onKaravat();
+            onKaravat1();
         });
 
         ugol1 = findViewById(R.id.imageView);
@@ -214,6 +214,10 @@ public class MainActivity2 extends AppCompatActivity {
     }
     public void onKaravat(){
         Intent intent = new Intent(this, MainActivity5.class);
+        startActivity(intent);
+    }
+    public void onKaravat1(){
+        Intent intent = new Intent(this, AddToCart.class);
         startActivity(intent);
     }
     public void onUgol1(){
