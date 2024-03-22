@@ -2,9 +2,11 @@ package Project.First;
 
 public class CartItem {
     String itemId;
+    String cartItemId;
+    String cartId;
     String categoryId;
     String name;
-    String price;
+    int price;
     String image;
-    String itemCount;
+    int itemCount;
 }

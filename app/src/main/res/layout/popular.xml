@@ -56,23 +56,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_8ssp">
-            <EditText
-                android:background="@drawable/roundedcorner"
-                android:backgroundTint="#53AABE"
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_36sdp"
-                android:clipToPadding="false"
-                android:hint="Search"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="@dimen/_12ssp"
-                android:paddingVertical="13dp"
-                android:textSize="@dimen/_11ssp"
-                android:textColorHint="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" >
-            </EditText>
+
+                <EditText
+                    android:id="@+id/editTextsearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:background="@drawable/roundedcorner"
+                    android:backgroundTint="#53AABE"
+                    android:clipToPadding="false"
+                    android:hint="Search"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="@dimen/_12ssp"
+                    android:paddingVertical="13dp"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:imeOptions="actionSearch"
+                    android:textColor="@color/white">
+                </EditText>
+
+
+
+                <!--<ImageView
+                    android:id="@+id/addToCart1"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:src="@drawable/cart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/editTextsearch"
+                    app:layout_constraintTop_toTopOf="parent" />-->
 
                 <ImageView
                     android:id="@+id/search"
@@ -80,10 +95,10 @@
                     android:layout_height="@dimen/_20sdp"
                     android:src="@drawable/search"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/editText"
+                    app:layout_constraintEnd_toEndOf="@+id/editTextsearch"
                     app:layout_constraintHorizontal_bias="0.958"
-                    app:layout_constraintStart_toStartOf="@+id/editText"
-                    app:layout_constraintTop_toTopOf="@+id/editText"
+                    app:layout_constraintStart_toStartOf="@+id/editTextsearch"
+                    app:layout_constraintTop_toTopOf="@+id/editTextsearch"
                     app:layout_constraintVertical_bias="0.476" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

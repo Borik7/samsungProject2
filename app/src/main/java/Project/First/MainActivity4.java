@@ -1,19 +1,21 @@
 package Project.First;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Project.First.databinding.ActivityMain4Binding;
 
 public class MainActivity4 extends AppCompatActivity {
 
@@ -24,11 +26,20 @@ public class MainActivity4 extends AppCompatActivity {
     RecyclerView recyclerView;
     private List<Product> productList;
     private ProductAdapter productAdapter;
+    String categoryId;
+    ActivityMain4Binding binding;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ugalokner);
+        binding = ActivityMain4Binding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        Intent intent = new Intent(this,Divan_1.class);
+        intent.putExtra("categoryId", "YCgYT6dREsVY7Hub8SLj");
+        intent.putExtra("productId", "OFipHVkV65Vaw46OWuzr");
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setOnClickListener(view ->{
+        });
         /*ugalok1 = findViewById(R.id.ugalok1222);
         ugalok1.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity4.this, Ugalok_1.class);
@@ -53,22 +64,35 @@ public class MainActivity4 extends AppCompatActivity {
         productList = new ArrayList<>();
         productAdapter = new ProductAdapter(productList, getApplicationContext());
         recyclerView.setAdapter(productAdapter);
+        categoryId = "iYl2gdeHmA0QBe0H8jkR";
+        binding.loading.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
         getProducts();
-        recyclerView.setVisibility(View.VISIBLE);
     }
     private void getProducts() {
-        FirebaseFirestore.getInstance().collection("products")
+        FirebaseFirestore.getInstance().collection("categories").document(categoryId).collection("products")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     productList.clear();
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                         Product product = new Product();
-                        product.image = documentSnapshot.getString("image");
+                        product.image = documentSnapshot.getString("imageUrl");
                         product.name = documentSnapshot.getString("name");
                         product.price = documentSnapshot.getString("price");
+                        product.productId = documentSnapshot.getId();
+                        product.categoryId = categoryId;
                         productList.add(product);
                     }
                     productAdapter.notifyDataSetChanged();
                 });
+        binding.loading.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+    }
+    private void loading(boolean isLoading) {
+        if (isLoading) {
+            binding.loading.setVisibility(View.VISIBLE);
+        } if(isLoading == false) {
+            binding.loading.setVisibility(View.GONE);
+        }
     }
 }

@@ -3,6 +3,7 @@ package Project.First;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,8 +41,10 @@ public class MainActivity2 extends AppCompatActivity {
     ImageView divan1;
     ImageView divan4;
     ImageView divan3;
-    TextView addToCart;
+    //TextView addToCart;
     TextView zaltextview;
+    EditText search;
+    ImageView cart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,18 @@ public class MainActivity2 extends AppCompatActivity {
                 onPopular();
             });
         }
+       /* search.findViewById(R.id.editTextsearch);
+        search.clearFocus();
+        search.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                String searchData = search.getText().toString();
+                // Perform your search logic here (e.g., filter data)
+                // You can call a method to handle the search results
+                handleSearchResults(searchData);
+                return true; // Indicates that the action was handled
+            }
+            return false; // Action not handled
+        });*/
         textViewonUgalok = findViewById(R.id.ugalokner);
         textViewonUgalok.setOnClickListener(view -> {
             onUglaok();
@@ -110,6 +125,7 @@ public class MainActivity2 extends AppCompatActivity {
         karavat4.setOnClickListener(view ->{
             onKaravat4();
         });
+
         karavat5 = findViewById(R.id.karavatimageView11);
         karavat5.setOnClickListener(view ->{
             onKaravat5();
@@ -180,6 +196,11 @@ public class MainActivity2 extends AppCompatActivity {
                 onPopular();
             }
         });*/
+        //cart.findViewById(R.id.addToCart1);
+        /*cart.setOnClickListener(view ->{
+            Intent intent = new Intent(this, MainActivity3.class);
+            startActivity(intent);
+  +      });*/
 
     }
 
@@ -268,4 +289,26 @@ public class MainActivity2 extends AppCompatActivity {
         intent.putExtra("productId", "a0oitHyqy6aESjdJFLDQ");
         startActivity(intent);
     }
+    /*public void onCart(){
+        Intent intent = new Intent(this,AddToCart.class);
+        startActivity(intent);
+    }*/
+  /* private void searchList(String text) {
+        List<Product> dataSearchList = new ArrayList<>();
+        for (Product productData : ) {
+            if (productData.name.toLowerCase().contains(text.toLowerCase())) {
+            dataSearchList.add(productData);
+            }
+        }
+        if (!dataSearchList.isEmpty()) {
+            ProductAdapter.setSearchList(dataSearchList);    } else {
+            Toast.makeText(this, "Not Found", Toast.LENGTH_SHORT).show();    }
+    }*/
+    /*private void handleSearchResults(String query) {
+        // Implement your search logic here
+        // For example, filter data based on the query
+        // Update your UI or perform other actions
+        List<Item> filteredList = new ArrayList();
+        for ()
+    }*/
 }

@@ -134,7 +134,6 @@ public class AddProductActivity extends AppCompatActivity {
         product.put("Erkchap2", erk2);
         product.put("Erkchap3", erk3);
         product.put("imageUrl", imageUrl);
-        if (category.equals("Divan")) {
             FirebaseFirestore.getInstance().collection("categories").whereEqualTo("name", category)
                     .get()
                     .addOnCompleteListener(task -> {
@@ -149,6 +148,5 @@ public class AddProductActivity extends AppCompatActivity {
                             }
                         }
                     });
-        }
     }
 }
