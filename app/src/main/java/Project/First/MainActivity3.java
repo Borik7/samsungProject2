@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -37,7 +39,7 @@ public class MainActivity3 extends AppCompatActivity {
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Intent intent = new Intent(this,Divan_1.class);
-        intent.putExtra("categoryId", "YCgYT6dREsVY7Hub8SLj");
+        intent.putExtra("categoryId", getIntent().getStringExtra("categoryId"));
         intent.putExtra("productId", "OFipHVkV65Vaw46OWuzr");
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setOnClickListener(view ->{
@@ -72,14 +74,29 @@ public class MainActivity3 extends AppCompatActivity {
         productList = new ArrayList<>();
         productAdapter = new ProductAdapter(productList, getApplicationContext());
         recyclerView.setAdapter(productAdapter);
-        categoryId = "YCgYT6dREsVY7Hub8SLj";
-        binding.loading.setVisibility(View.VISIBLE);
+        /*categoryId = FirebaseFirestore.getInstance().collection("categories").whereEqualTo("categoryId", ).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        categoryId = (String) documentSnapshot.get("categoryId");
+                    }
+                }).toString();*/
+       // binding.text.setText(categoryId);
+        //binding.loading.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         getProducts();
     }
 
     private void getProducts() {
-        FirebaseFirestore.getInstance().collection("categories").document(categoryId).collection("products")
+        FirebaseFirestore.getInstance().collection("categories").document(getIntent().getStringExtra("categoryId"))
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                          @Override
+                                          public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                              binding.categoryname.setText(documentSnapshot.getString("name"));
+                                          }
+                                      });
+        FirebaseFirestore.getInstance().collection("categories").document(getIntent().getStringExtra("categoryId")).collection("products")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     productList.clear();
@@ -94,7 +111,7 @@ public class MainActivity3 extends AppCompatActivity {
                     }
                     productAdapter.notifyDataSetChanged();
                 });
-        binding.loading.setVisibility(View.GONE);
+        //binding.loading.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
   private void loading(boolean isLoading) {

@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_8ssp"
 
     tools:context=".CreateAccountActivity">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,8 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/hello_text"
-        android:layout_marginVertical="32dp"
-        android:orientation="vertical">
+        android:layout_marginVertical="@dimen/_10ssp"
+        android:orientation="vertical"
+        android:padding="@dimen/_8ssp">
 
         <EditText
             android:id="@+id/email_edit_text"
@@ -54,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:backgroundTint="#5A4446"
+            android:background="@drawable/roundedcorner1"
             android:textSize="20sp"
             android:padding="16dp"
             android:layout_marginTop="12dp" />
@@ -64,11 +65,10 @@
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorner1"
             app:passwordToggleEnabled="true"
             android:hint="Password"
-
             android:textSize="20sp"
-            android:backgroundTint="#5A4446"
             android:padding="16dp"
             android:layout_marginTop="12dp" />
 
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm Password"
-            android:backgroundTint="#5A4446"
+            android:background="@drawable/roundedcorner1"
             android:textSize="20sp"
             android:padding="16dp"
             android:layout_marginTop="12dp" />
@@ -132,19 +132,6 @@
         android:layout_below="@id/lgb"
         android:orientation="horizontal"
         android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Do you want watch in guest mode?  "/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:id="@+id/guest_mode_view_btn"
-            android:text="Enter"/>
-
     </LinearLayout>
     </LinearLayout>
     </ScrollView>

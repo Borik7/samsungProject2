@@ -38,20 +38,47 @@
                 android:textSize="@dimen/_28ssp"
                 android:textAlignment="center"
                 android:textColor="#53AABE"/>-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-            <com.codebyashish.autoimageslider.AutoImageSlider
-                android:padding="@dimen/_8ssp"
-                android:id="@+id/autoImageSliderpop"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                app:ais_corner_radius="10"
-                app:ais_auto_sliding="true"
-                app:ais_time_interval="3000"
-                app:ais_dots_visible="false"
-                app:ais_indicator_align="@string/center"
-                android:stateListAnimator="@android:anim/slide_out_right"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/logiut"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/Cart"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:src="@drawable/cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.codebyashish.autoimageslider.AutoImageSlider
+        android:id="@+id/autoImageSliderpop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:padding="@dimen/_8ssp"
+        android:stateListAnimator="@android:anim/slide_out_right"
+        app:ais_auto_sliding="true"
+        app:ais_corner_radius="10"
+        app:ais_dots_visible="false"
+        app:ais_indicator_align="@string/center"
+        app:ais_time_interval="3000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Cart" />
+</androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -84,6 +83,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             FirebaseFirestore.getInstance().collection("categories").document(cartData.categoryId).collection("products").document(cartData.itemId)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                            /* plus.findViewById(R.id.imageViewplus);
@@ -97,7 +97,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                             if (documentSnapshot.getString("imageUrl") != null) {
                                 Picasso.get().load(documentSnapshot.getString("imageUrl")).into(binding.imageView1);
                             }
-
                             binding.textView1.setText(documentSnapshot.getString("name"));
                             int price = cartData.price;
                             binding.textView2.setText(Integer.toString(price));
@@ -105,10 +104,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                                 Intent intent = new Intent(context.getApplicationContext(), Divan_1.class);
                                 intent.putExtra("categoryId", cartData.categoryId);
                                 intent.putExtra("productId", cartData.itemId);
+                                cartData.counter1++;
+                                intent.putExtra("counter1", cartData.counter1);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 context.startActivity(intent);
                             });
-                            binding.imageViewplus.setOnClickListener(view ->{
+                            binding.imageViewplus.setOnClickListener(view -> {
 //                                FirebaseFirestore.getInstance().collection("carts").document(cartData.categoryId).collection("carts").document(cartData.cartItemId)
 //                                                .collection("cartitems").document("itemCount").
 //                                                get()
@@ -121,18 +122,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 //                                            }
 //                                        });
 
-                                    int count1 = cartData.itemCount++;
-                                    FirebaseFirestore.getInstance().collection("carts")
-                                            .document(cartData.cartId).collection("cartItems").document(cartData.cartItemId).update("itemCount", count1);
+                                int count1 = cartData.itemCount++;
+                                FirebaseFirestore.getInstance().collection("carts")
+                                        .document(cartData.cartId).collection("cartItems").document(cartData.cartItemId).update("itemCount", count1);
                                 binding.textView2.setText(Integer.toString(cartData.price * count1));
-                                    binding.textViewcount.setText(Integer.toString(count1));
+                                binding.textViewcount.setText(Integer.toString(count1));
 
 
                                 /*cartData.itemCount++;
                                 cartData.price = price * cartData.itemCount;
                                 binding.textView1.setText(cartData.itemCount);*/
                             });
-                            binding.imageViewminus.setOnClickListener(view ->{
+                            binding.imageViewplus.setOnClickListener(view -> {
 //                                FirebaseFirestore.getInstance().collection("carts").document(cartData.categoryId).collection("carts").document(cartData.cartItemId)
 //                                                .collection("cartitems").document("itemCount").
 //                                                get()
@@ -144,29 +145,40 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 //                                                //count++;
 //                                            }
 //                                        });
-                                if(cartData.itemCount > 0) {
-                                    int count1 = cartData.itemCount--;
-                                    FirebaseFirestore.getInstance().collection("carts").document(cartData.cartId)
-                                            .collection("cartItems").document(cartData.cartItemId).update("itemCount", count1);
+                                count1++;
+
+                                FirebaseFirestore.getInstance().collection("carts")
+                                        .document(cartData.cartId).collection("cartItems").document(cartData.cartItemId).update("itemCount", count1);
+                                binding.textView2.setText(Integer.toString(cartData.price * count1));
+                                binding.textViewcount.setText(Integer.toString(count1));
+
+
+                                /*cartData.itemCount++;
+                                cartData.price = price * cartData.itemCount;
+                                binding.textView1.setText(cartData.itemCount);*/
+                            });
+                            binding.imageViewminus.setOnClickListener(view -> {
+//                                FirebaseFirestore.getInstance().collection("carts").document(cartData.categoryId).collection("carts").document(cartData.cartItemId)
+//                                                .collection("cartitems").document("itemCount").
+//                                                get()
+//                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                            @Override
+//                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                                                //int asd = (int) documentSnapshot.get("itemCount");
+//                                                binding.textViewcount.setText(cartData.itemCount++);
+//                                                //count++;
+//                                            }
+//                                        });
+                                if (cartData.itemCount > 0) {
+                                    count1--;
+                                    FirebaseFirestore.getInstance().collection("carts")
+                                            .document(cartData.cartId).collection("cartItems").document(cartData.cartItemId).update("itemCount", count1);
                                     binding.textView2.setText(Integer.toString(cartData.price * count1));
                                     binding.textViewcount.setText(Integer.toString(count1));
-
                                 }
                                 /*cartData.itemCount++;
                                 cartData.price = price * cartData.itemCount;
                                 binding.textView1.setText(cartData.itemCount);*/
-                            });
-                            binding.imageViewdelete.setOnClickListener(view ->{
-                                FirebaseFirestore.getInstance().collection("carts").document(cartData.cartId).collection("cartItems")
-                                        .document(cartData.cartItemId).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                //((AddToCart)context).finish();
-                                                Intent intent = new Intent(context , MainActivity2.class);
-                                                context.startActivity(intent);
-                                                Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
                             });
                         }
                     });

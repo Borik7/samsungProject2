@@ -1414,6 +1414,7 @@ public class Divan_1 extends AppCompatActivity {
 package Project.First;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -1531,10 +1532,15 @@ public class Divan_1 extends AppCompatActivity {
         //android_id = telephonyManager.getImei();
 
         ViewPager viewPager = findViewById(R.id.viewPager);
-        getProducts(getIntent().getStringExtra("categoryId"), getIntent().getStringExtra("productId"));
         binding.addToCart.setOnClickListener(view ->{
             addToCart(getIntent().getStringExtra("productId"),getIntent().getStringExtra("categoryId"));
         });
+        int counter1 = Integer.parseInt(getIntent().getStringExtra("count1"));
+        if (counter1 == 1){
+            binding.addToCart.setVisibility(View.GONE);
+        }else{
+            binding.addToCart.setVisibility(View.VISIBLE);
+        }
         tevkoj = findViewById(R.id.tevguyn);
         description = findViewById(R.id.divanbacatrutyun);
         name = findViewById(R.id.name);
@@ -1961,8 +1967,7 @@ public class Divan_1 extends AppCompatActivity {
             }
 
         });
-
-
+        binding.Cart.setOnClickListener((v)-> startActivity(new Intent(Divan_1.this, AddToCart.class)));
     }
 
     private void getProducts(String categoryId, String productId) {

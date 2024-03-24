@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/hello_text"
         android:layout_marginVertical="@dimen/_5ssp"
-
+        android:padding="@dimen/_8ssp"
         android:orientation="vertical">
 
         <EditText
@@ -47,16 +47,16 @@
             android:layout_height="wrap_content"
             android:hint="Email"
             android:textSize="20sp"
-            android:backgroundTint="#5A4446"
+            android:background="@drawable/roundedcorner1"
             android:padding="16dp"
             android:layout_marginTop="12dp" />
 
         <EditText
             android:id="@+id/password_edit_text"
+            android:background="@drawable/roundedcorner1"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#5A4446"
             android:hint="Password"
             android:textSize="20sp"
             android:padding="16dp"
@@ -112,18 +112,5 @@
         android:layout_below="@id/lgb"
         android:orientation="horizontal"
         android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Do you want watch in guest mode?"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:id="@+id/guest_mode_view_btn"
-            android:text="  Enter"/>
-
     </LinearLayout>
 </RelativeLayout>

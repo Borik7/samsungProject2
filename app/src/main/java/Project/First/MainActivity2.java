@@ -45,6 +45,8 @@ public class MainActivity2 extends AppCompatActivity {
     TextView zaltextview;
     EditText search;
     ImageView cart;
+    ImageView logout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,25 @@ public class MainActivity2 extends AppCompatActivity {
             }
             return false; // Action not handled
         });*/
+        //cart.findViewById(R.id.Cart);
+        /*cart.setOnClickListener(view ->{
+            Intent intent = new Intent(this,AddToCart.class);
+            intent.putExtra("categoryId", "YCgYT6dREsVY7Hub8SLj");
+            intent.putExtra("productId", "a0oitHyqy6aESjdJFLDQ");
+            startActivity(intent);
+        });*/
+        /*logout.findViewById(R.id.logiut);
+        logout.setOnClickListener(view ->{
+            onLogin();
+        });*/
+        cart = findViewById(R.id.Cart);
+        cart.setOnClickListener(view ->{
+            onCart();
+        });
+        logout = findViewById(R.id.logiut);
+        logout.setOnClickListener(view ->{
+            onLogin();
+        });
         textViewonUgalok = findViewById(R.id.ugalokner);
         textViewonUgalok.setOnClickListener(view -> {
             onUglaok();
@@ -206,14 +227,17 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void onPopular(){
         Intent intent = new Intent(this, MainActivity3.class);
+        intent.putExtra("categoryId", "YCgYT6dREsVY7Hub8SLj");
         startActivity(intent);
     }
     public void onUglaok(){
-        Intent intent = new Intent(this, MainActivity4.class);
+        Intent intent = new Intent(this, MainActivity3.class);
+        intent.putExtra("categoryId", "iYl2gdeHmA0QBe0H8jkR");
         startActivity(intent);
     }
     public void onKaravat(){
-        Intent intent = new Intent(this, MainActivity5.class);
+        Intent intent = new Intent(this, MainActivity3.class);
+        intent.putExtra("categoryId", "iYl2gdeHmA0QBe0H8jkR");
         startActivity(intent);
     }
     public void onKaravat1(){
@@ -278,8 +302,13 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = new Intent(this,Divan_5.class);
         startActivity(intent);
     }
-    public void onDivan3(){
-
+    public void onLogin(){
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+    }
+    public void onCart(){
+        Intent intent = new Intent(this,AddToCart.class);
+        startActivity(intent);
     }
     public void onDivan2(){
         /*Intent intent = new Intent(this,Divan_2.class);

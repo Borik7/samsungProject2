@@ -9,4 +9,5 @@ public class CartItem {
     int price;
     String image;
     int itemCount;
+    int counter1 = 0;
 }

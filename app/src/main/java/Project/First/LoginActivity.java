@@ -35,9 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.login_btn);
         progressBar = findViewById(R.id.progress_bar);
         createAccountBtnTextView = findViewById(R.id.create_account_text_view_btn);
-        guestmodeBtnTextView = findViewById(R.id.guest_mode_view_btn);
+
         loginBtn.setOnClickListener((v)-> loginUser());
-        guestmodeBtnTextView.setOnClickListener((v)-> startActivity(new Intent(LoginActivity.this, MainActivity2.class)));
         createAccountBtnTextView.setOnClickListener((v)-> startActivity(new Intent(LoginActivity.this, CreateAccountActivity.class)));
     }
 
