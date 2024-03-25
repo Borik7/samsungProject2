@@ -39,7 +39,8 @@ public class MainActivity3 extends AppCompatActivity {
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Intent intent = new Intent(this,Divan_1.class);
-        intent.putExtra("categoryId", getIntent().getStringExtra("categoryId"));
+        categoryId = getIntent().getStringExtra("categoryId");
+        intent.putExtra("categoryId", categoryId);
         intent.putExtra("productId", "OFipHVkV65Vaw46OWuzr");
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setOnClickListener(view ->{
@@ -74,15 +75,15 @@ public class MainActivity3 extends AppCompatActivity {
         productList = new ArrayList<>();
         productAdapter = new ProductAdapter(productList, getApplicationContext());
         recyclerView.setAdapter(productAdapter);
-        /*categoryId = FirebaseFirestore.getInstance().collection("categories").whereEqualTo("categoryId", ).get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        categoryId = (String) documentSnapshot.get("categoryId");
-                    }
-                }).toString();*/
-       // binding.text.setText(categoryId);
-        //binding.loading.setVisibility(View.VISIBLE);
+//        categoryId = FirebaseFirestore.getInstance().collection("carts").document(categoryId)
+//                .get()
+//                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                            @Override
+//                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                                documentSnapshot.get("categoryId");
+//                            }
+//                        }).toString();
+        binding.loading.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         getProducts();
     }
@@ -91,11 +92,11 @@ public class MainActivity3 extends AppCompatActivity {
         FirebaseFirestore.getInstance().collection("categories").document(getIntent().getStringExtra("categoryId"))
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                          @Override
-                                          public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                              binding.categoryname.setText(documentSnapshot.getString("name"));
-                                          }
-                                      });
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        binding.categoryname.setText(documentSnapshot.getString("name"));
+                    }
+                });
         FirebaseFirestore.getInstance().collection("categories").document(getIntent().getStringExtra("categoryId")).collection("products")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -111,10 +112,10 @@ public class MainActivity3 extends AppCompatActivity {
                     }
                     productAdapter.notifyDataSetChanged();
                 });
-        //binding.loading.setVisibility(View.GONE);
+        binding.loading.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
-  private void loading(boolean isLoading) {
+    private void loading(boolean isLoading) {
         if (isLoading) {
             binding.loading.setVisibility(View.VISIBLE);
         } if(isLoading == false) {

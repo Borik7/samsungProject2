@@ -46,6 +46,7 @@ public class MainActivity2 extends AppCompatActivity {
     EditText search;
     ImageView cart;
     ImageView logout;
+    TextView host;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +65,16 @@ public class MainActivity2 extends AppCompatActivity {
             textViewonZalUgalok.setOnClickListener((v)-> startActivity(new Intent(MainActivity2.this, AddProductActivity.class)));
             zaltextview.setText("Create new category");
             zaltextview.setOnClickListener((v)-> startActivity(new Intent(MainActivity2.this, AddProductCategory.class)));
+            /*textViewonKaravat.setText("Host");
+            textViewonKaravat.setOnClickListener((v)-> startActivity(new Intent(MainActivity2.this, Host.class)));*/
         }else {
             textViewonZalUgalok = findViewById(R.id.zalugalokner);
             textViewonZalUgalok.setOnClickListener(view -> {
                 onPopular();
             });
         }
+        host = findViewById(R.id.textView);
+        host.setOnClickListener((v)-> startActivity(new Intent(MainActivity2.this, Host.class)));
        /* search.findViewById(R.id.editTextsearch);
         search.clearFocus();
         search.setOnEditorActionListener((v, actionId, event) -> {

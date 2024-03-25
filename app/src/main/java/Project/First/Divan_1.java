@@ -1432,11 +1432,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.codebyashish.autoimageslider.AutoImageSlider;
-import com.codebyashish.autoimageslider.Enums.ImageAnimationTypes;
-import com.codebyashish.autoimageslider.Enums.ImageScaleType;
-import com.codebyashish.autoimageslider.ExceptionsClass;
-import com.codebyashish.autoimageslider.Models.ImageSlidesModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -1448,7 +1443,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1541,6 +1535,17 @@ public class Divan_1 extends AppCompatActivity {
         }else{
             binding.addToCart.setVisibility(View.VISIBLE);
         }
+        String categoryId = getIntent().getStringExtra("categoryId");
+        String productId = getIntent().getStringExtra("productId");
+        getProducts(categoryId, productId);
+        FirebaseFirestore.getInstance().collection("categories").document(categoryId).collection("products").document(productId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        gin = Integer.parseInt(documentSnapshot.getString("itemPrice"));
+                    }
+                });
         tevkoj = findViewById(R.id.tevguyn);
         description = findViewById(R.id.divanbacatrutyun);
         name = findViewById(R.id.name);
@@ -1988,7 +1993,7 @@ public class Divan_1 extends AppCompatActivity {
                             erkchap1.setText(documentSnapshot.getString("Erkchap1"));
                             erkchap2.setText(documentSnapshot.getString("Erkchap2"));
                             erkchap3.setText(documentSnapshot.getString("Erkchap3"));
-                            AutoImageSlider autoImageSlider = findViewById(R.id.autoImageSliderDivan);
+                            /*AutoImageSlider autoImageSlider = findViewById(R.id.autoImageSliderDivan);
                             ArrayList<ImageSlidesModel> autoImageList = new ArrayList<>();
                             try {
                                 autoImageList.add(new ImageSlidesModel(documentSnapshot.getString("imageUrl"), ImageScaleType.CENTER_CROP));
@@ -2001,7 +2006,7 @@ public class Divan_1 extends AppCompatActivity {
                                 throw new RuntimeException(e);
                             }
                             autoImageSlider.setSlideAnimation(ImageAnimationTypes.DEPTH_SLIDE);
-                            autoImageSlider.setImageList(autoImageList);
+                            autoImageSlider.setImageList(autoImageList);*/
                             //binding.loading.setVisibility(View.GONE);
                             loading(false);
                         }
@@ -2009,7 +2014,6 @@ public class Divan_1 extends AppCompatActivity {
                 });
         loading(false);
     }
-
     /*private void addToCart(String productId, String categoryId) {
         HashMap<String, Object> cart = new HashMap<>();
         HashMap<String, Object> cartItem = new HashMap<>();
